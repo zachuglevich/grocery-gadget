@@ -1,0 +1,91 @@
+<h1>
+  List of all list lines
+</h1>
+
+<hr>
+
+<article>
+  <header>
+    <h2>
+      Add a new list line
+    </h2>
+  </header>
+
+  <form action="/insert_list_line" method="post">
+    <div>
+      <label for="ingredient_id_box">
+        Ingredient
+      </label>
+
+      <input type="text" id="ingredient_id_box" name="query_ingredient_id">
+    </div>
+
+    <div>
+      <label for="list_id_box">
+        List
+      </label>
+
+      <input type="text" id="list_id_box" name="query_list_id">
+    </div>
+
+    <div>
+      <label for="quantity_box">
+        Quantity
+      </label>
+
+      <input type="text" id="quantity_box" name="query_quantity">
+    </div>
+
+    <div>
+      <label for="quantity_unit_box">
+        Quantity unit
+      </label>
+
+      <input type="text" id="quantity_unit_box" name="query_quantity_unit">
+    </div>
+
+    <div>
+      <label for="notes_box">
+        Notes
+      </label>
+
+      <input type="text" id="notes_box" name="query_notes">
+    </div>
+
+    <div>
+      <label for="in_stock_flag_box">
+        In stock flag
+      </label>
+
+      <input type="text" id="in_stock_flag_box" name="query_in_stock_flag">
+    </div>
+
+    <div>
+      <label for="in_cart_flag_box">
+        In cart flag
+      </label>
+
+      <input type="text" id="in_cart_flag_box" name="query_in_cart_flag">
+    </div>
+
+    <button type="submit">
+      Create list line
+    </button>
+  </form>
+</article>
+
+<hr>
+
+<article>
+  <ul>
+    <% @list_of_list_lines.each do |a_list_line| %>
+      <li>
+        <a href="/list_lines/<%= a_list_line.id %>">
+          List line #<%= a_list_line.id %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</article>
+
+<hr>
