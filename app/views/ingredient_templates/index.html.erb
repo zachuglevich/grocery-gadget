@@ -1,0 +1,59 @@
+<h1>
+  List of all ingredients
+</h1>
+
+<hr>
+
+<article>
+  <header>
+    <h2>
+      Add a new ingredient
+    </h2>
+  </header>
+
+  <form action="/insert_ingredient" method="post">
+    <div>
+      <label for="name_box">
+        Name
+      </label>
+
+      <input type="text" id="name_box" name="query_name">
+    </div>
+
+    <div>
+      <label for="list_lines_count_box">
+        List lines count
+      </label>
+
+      <input type="text" id="list_lines_count_box" name="query_list_lines_count">
+    </div>
+
+    <div>
+      <label for="recipe_lines_count_box">
+        Recipe lines count
+      </label>
+
+      <input type="text" id="recipe_lines_count_box" name="query_recipe_lines_count">
+    </div>
+
+    <button type="submit">
+      Create ingredient
+    </button>
+  </form>
+</article>
+
+<hr>
+
+<article>
+  <ul>
+    <% @list_of_ingredients.each do |an_ingredient| %>
+      <li>
+        <a href="/ingredients/<%= an_ingredient.id %>">
+          Ingredient #<%= an_ingredient.id %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</article>
+
+<hr>
