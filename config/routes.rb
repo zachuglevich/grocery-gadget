@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  # Routes for the Recipe line resource:
+
+  # CREATE
+  post("/insert_recipe_line", { :controller => "recipe_lines", :action => "create" })
+
+  # READ
+  get("/recipe_lines", { :controller => "recipe_lines", :action => "index" })
+
+  get("/recipe_lines/:path_id", { :controller => "recipe_lines", :action => "show" })
+
+  # UPDATE
+
+  post("/modify_recipe_line/:path_id", { :controller => "recipe_lines", :action => "update" })
+
+  # DELETE
+  get("/delete_recipe_line/:path_id", { :controller => "recipe_lines", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the List resource:
 
   # CREATE
