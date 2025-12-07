@@ -1,0 +1,111 @@
+<h1>
+  List #<%= @the_list.id %> details
+</h1>
+
+<article>
+  <div>
+    <a href="/lists">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_list/<%= @the_list.id %>">
+      Delete list
+    </a>
+  </div>
+  <dl>
+    <dt>
+      Name
+    </dt>
+    <dd>
+      <%= @the_list.name %>
+    </dd>
+
+    <dt>
+      Description
+    </dt>
+    <dd>
+      <%= @the_list.description %>
+    </dd>
+
+    <dt>
+      User
+    </dt>
+    <dd>
+      <%= @the_list.user_id %>
+    </dd>
+
+    <dt>
+      List lines count
+    </dt>
+    <dd>
+      <%= @the_list.list_lines_count %>
+    </dd>
+
+    <dt>
+      Created at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_list.created_at) %> ago
+    </dd>
+
+    <dt>
+      Updated at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_list.updated_at) %> ago
+    </dd>
+  </dl>
+</article>
+
+<hr>
+
+
+<article>
+  <header>
+    <h2>
+      Edit list
+    </h2>
+  </header>
+
+  <form action="/modify_list/<%= @the_list.id %>"  method="post" >
+    <div>
+      <label for="name_box">
+        Name
+      </label>
+
+      <input type="text" id="name_box" name="query_name" value="<%= @the_list.name %>">
+    </div>
+
+    <div>
+      <label for="description_box">
+        Description
+      </label>
+
+      <input type="text" id="description_box" name="query_description" value="<%= @the_list.description %>">
+    </div>
+
+    <div>
+      <label for="user_id_box">
+        User
+      </label>
+
+      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_list.user_id %>">
+    </div>
+
+    <div>
+      <label for="list_lines_count_box">
+        List lines count
+      </label>
+
+      <input type="text" id="list_lines_count_box" name="query_list_lines_count" value="<%= @the_list.list_lines_count %>">
+    </div>
+
+    <button type="submit">
+      Update list
+    </button>
+  </form>
+</article>
+
+<hr>
