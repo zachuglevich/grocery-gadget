@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  # Routes for the List line resource:
 
   get("/", { :controller => "home", :action => "home_display" })
 
+  # Routes for the List line resource:
   # CREATE
   post("/insert_list_line", { :controller => "list_lines", :action => "create" })
 
@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   #------------------------------
 
   # Routes for the Recipe line resource:
-
   # CREATE
   post("/insert_recipe_line", { :controller => "recipe_lines", :action => "create" })
 
@@ -40,7 +39,6 @@ Rails.application.routes.draw do
   #------------------------------
 
   # Routes for the List resource:
-
   # CREATE
   post("/insert_list", { :controller => "lists", :action => "create" })
 
@@ -59,7 +57,6 @@ Rails.application.routes.draw do
   #------------------------------
 
   # Routes for the Recipe resource:
-
   # CREATE
   post("/insert_recipe", { :controller => "recipes", :action => "create" })
 
@@ -78,7 +75,6 @@ Rails.application.routes.draw do
   #------------------------------
 
   # Routes for the Ingredient resource:
-
   # CREATE
   post("/insert_ingredient", { :controller => "ingredients", :action => "create" })
 

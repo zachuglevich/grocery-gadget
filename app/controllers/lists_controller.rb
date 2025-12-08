@@ -21,8 +21,9 @@ class ListsController < ApplicationController
     the_list = List.new
     the_list.name = params.fetch("query_name")
     the_list.description = params.fetch("query_description")
-    the_list.user_id = params.fetch("query_user_id")
-    the_list.list_lines_count = params.fetch("query_list_lines_count")
+    #Set the owner on the sever side
+    the_list.user_id = current_user.id
+    #the_list.list_lines_count = params.fetch("query_list_lines_count")
 
     if the_list.valid?
       the_list.save
