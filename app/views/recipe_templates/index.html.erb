@@ -25,23 +25,7 @@
         Description
       </label>
 
-      <input type="text" id="description_box" name="query_description">
-    </div>
-
-    <div>
-      <label for="user_id_box">
-        User
-      </label>
-
-      <input type="text" id="user_id_box" name="query_user_id">
-    </div>
-
-    <div>
-      <label for="recipe_lines_count_box">
-        Recipe lines count
-      </label>
-
-      <input type="text" id="recipe_lines_count_box" name="query_recipe_lines_count">
+      <textarea type="text" id="description_box" name="query_description"></textarea>
     </div>
 
     <button type="submit">
@@ -57,7 +41,7 @@
     <% @list_of_recipes.each do |a_recipe| %>
       <li>
         <a href="/recipes/<%= a_recipe.id %>">
-          Recipe #<%= a_recipe.id %>
+          <%= a_recipe.name %>
         </a>
       </li>
     <% end %>

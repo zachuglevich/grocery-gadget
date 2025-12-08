@@ -1,5 +1,5 @@
 <h1>
-  Recipe #<%= @the_recipe.id %> details
+  <%= @the_recipe.name %> details
 </h1>
 
 <article>
@@ -83,27 +83,11 @@
         Description
       </label>
 
-      <input type="text" id="description_box" name="query_description" value="<%= @the_recipe.description %>">
-    </div>
-
-    <div>
-      <label for="user_id_box">
-        User
-      </label>
-
-      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_recipe.user_id %>">
-    </div>
-
-    <div>
-      <label for="recipe_lines_count_box">
-        Recipe lines count
-      </label>
-
-      <input type="text" id="recipe_lines_count_box" name="query_recipe_lines_count" value="<%= @the_recipe.recipe_lines_count %>">
+      <textarea type="text" id="description_box" name="query_description"><%= @the_recipe.description %></textarea>
     </div>
 
     <button type="submit">
-      Update recipe
+      Update recipe details
     </button>
   </form>
 </article>

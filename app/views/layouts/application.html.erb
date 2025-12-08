@@ -51,6 +51,9 @@
                 <a href="/users/sign_up">Sign up</a>
               </li>
             <% else %>
+              <li style="color:black;">
+                  Hello, <%= current_user.email %>
+              </li>
               <li>
                 <a href="/users/edit">Edit profile</a>
               </li>

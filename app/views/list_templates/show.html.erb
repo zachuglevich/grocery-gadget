@@ -65,7 +65,7 @@
 <article>
   <header>
     <h2>
-      Edit list
+      Edit grocery list
     </h2>
   </header>
 
@@ -83,27 +83,11 @@
         Description
       </label>
 
-      <input type="text" id="description_box" name="query_description" value="<%= @the_list.description %>">
-    </div>
-
-    <div>
-      <label for="user_id_box">
-        User
-      </label>
-
-      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_list.user_id %>">
-    </div>
-
-    <div>
-      <label for="list_lines_count_box">
-        List lines count
-      </label>
-
-      <input type="text" id="list_lines_count_box" name="query_list_lines_count" value="<%= @the_list.list_lines_count %>">
+      <textarea type="text" id="description_box" name="query_description"><%= @the_list.description %></textarea>
     </div>
 
     <button type="submit">
-      Update list
+      Update list details
     </button>
   </form>
 </article>
