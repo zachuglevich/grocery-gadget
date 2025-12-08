@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # Routes for the List line resource:
 
+  get("/", { :controller => "home", :action => "home_display" })
+
   # CREATE
   post("/insert_list_line", { :controller => "list_lines", :action => "create" })
 

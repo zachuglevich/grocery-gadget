@@ -22,7 +22,53 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="pico">
+    <header>
+      <div class="container-two-thirds">
+        <nav>
+          <ul>
+            <li>
+              <a href="/">
+                <strong>
+                  Grocery Gadget
+                </strong>
+              </a>
+            </li>
+            <% if current_user == nil %>
+              <li>
+                <a href="/users/sign_in">Log in</a>
+              </li>
+              <li>
+                <a href="/users/sign_up">Sign up</a>
+              </li>
+            <% else %>
+              <li>
+                <a href="/users/edit">Edit profile</a>
+              </li>
+              <li>
+                <a href="/users/sign_out">Sign out</a>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container-two-thirds">
+        <div class="text-success">
+          <%= notice %>
+        </div>
+
+        <div class="text-danger">
+          <%= alert %>
+        </div>
+        <%= yield %>
+      </div>
+    </main>
+
+    <footer class="text-center">
+      AppDev 2025. All rights reserved.
+    </footer>
   </body>
 </html>
