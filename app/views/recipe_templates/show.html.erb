@@ -1,5 +1,5 @@
 <h1>
-  <%= @the_recipe.name %> details
+  <%= @the_recipe.name %> recipe details
 </h1>
 
 <article>
@@ -61,11 +61,79 @@
 
 <hr>
 
+<article>
+  <header>
+    <h2>
+      Add ingredients to recipe
+    </h2>
+  </header>
+
+  <form action="/insert_recipe_line"  method="post" >
+    <div>
+      <label for="ingredient_field">
+        Ingredient
+      </label>
+
+      <select id="ingredient_field" name="query_ingredient_id">
+        <% Ingredient.all.each do |an_ingredient| %>
+          <option value="<%= an_ingredient.id %>">
+            <%= an_ingredient.name %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+
+    <div>
+      <label for="quantity_field">
+        Quantity
+      </label>
+      <input id="quantity_field" type="text" name="query_quantity">
+    </div>
+
+    <div>
+      <label for="quantity_unit_field">
+        Quantity Units
+      </label>
+      <input id="quantity_unit_field" type="text" name="query_quantity_unit">
+    </div>
+
+    <div>
+      <label for="notes_field">Notes</label>
+      <textarea type="text" id="notes_field" name="query_notes"></textarea>
+    </div>
+
+    <input type="hidden" name="query_recipe_id" value="<%= @the_recipe.id %>">
+
+    <button type="submit">
+      Add Ingredient
+    </button>
+  </form>
+</article>
+
+<hr>
+
+<hr>
+
+<article>
+  <ul>
+    <% @list_of_recipe_lines.each do |a_recipe_line| %>
+      <li>
+        <a href="/recipe_lines/<%= a_recipe_line.id %>">
+          Recipe line #<%= a_recipe_line.id %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</article>
+
+<hr>
+
+<hr>
 
 <article>
   <header>
     <h2>
-      Edit recipe
+      Edit recipe overview
     </h2>
   </header>
 

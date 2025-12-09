@@ -8,16 +8,23 @@ class RecipesController < ApplicationController
   end
 
   def show
+    #Recipe Details
     the_id = params.fetch("path_id")
-
     matching_recipes = Recipe.where({ :id => the_id })
-
     @the_recipe = matching_recipes.at(0)
+
+    #Recipe Lines
+    matching_recipe_lines = RecipeLine.all
+    @list_of_recipe_lines = matching_recipe_lines.order({ :created_at => :desc })
 
     render({ :template => "recipe_templates/show" })
   end
 
   def create
+    the_id = params.fetch("path_id")
+    matching_recipes = Recipe.where({ :id => the_id })
+    @the_recipe = matching_recipes.at(0)
+
     the_recipe = Recipe.new
     the_recipe.name = params.fetch("query_name")
     the_recipe.description = params.fetch("query_description")
@@ -39,8 +46,6 @@ class RecipesController < ApplicationController
 
     the_recipe.name = params.fetch("query_name")
     the_recipe.description = params.fetch("query_description")
-    the_recipe.user_id = params.fetch("query_user_id")
-    the_recipe.recipe_lines_count = params.fetch("query_recipe_lines_count")
 
     if the_recipe.valid?
       the_recipe.save

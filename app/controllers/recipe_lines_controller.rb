@@ -18,6 +18,7 @@ class RecipeLinesController < ApplicationController
   end
 
   def create
+
     the_recipe_line = RecipeLine.new
     the_recipe_line.ingredient_id = params.fetch("query_ingredient_id")
     the_recipe_line.recipe_id = params.fetch("query_recipe_id")
@@ -27,9 +28,9 @@ class RecipeLinesController < ApplicationController
 
     if the_recipe_line.valid?
       the_recipe_line.save
-      redirect_to("/recipe_lines", { :notice => "Recipe line created successfully." })
+      redirect_to("/recipes/#{the_recipe_line.recipe_id}", { :notice => "Recipe line created successfully." })
     else
-      redirect_to("/recipe_lines", { :alert => the_recipe_line.errors.full_messages.to_sentence })
+      redirect_to("/recipes/#{the_recipe_line.recipe_id}", { :alert => the_recipe_line.errors.full_messages.to_sentence })
     end
   end
 
