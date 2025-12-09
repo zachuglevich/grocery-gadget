@@ -111,22 +111,29 @@
 </article>
 
 <hr>
-
-<hr>
-
 <article>
-  <ul>
-    <% @list_of_recipe_lines.each do |a_recipe_line| %>
-      <li>
-        <a href="/recipe_lines/<%= a_recipe_line.id %>">
-          Recipe line #<%= a_recipe_line.id %>
-        </a>
-      </li>
-    <% end %>
-  </ul>
+  <h1> Ingredients List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th> Ingredient </th>
+        <th> Quantity </th>
+        <th> Notes </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe_lines.each do |a_line| %>
+        <% matching_ingredients = Ingredient.where({:id => a_line.ingredient_id})%>
+        <% the_ingredient = matching_ingredients.at(0) %>
+        <tr>
+          <td><%= the_ingredient.name %></td>
+          <td><%= a_line.quantity %> <%= a_line.quantity_unit %></td>
+          <td><%= a_line.notes %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </article>
-
-<hr>
 
 <hr>
 

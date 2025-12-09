@@ -14,8 +14,8 @@ class RecipesController < ApplicationController
     @the_recipe = matching_recipes.at(0)
 
     #Recipe Lines
-    matching_recipe_lines = RecipeLine.all
-    @list_of_recipe_lines = matching_recipe_lines.order({ :created_at => :desc })
+    matching_recipe_lines = RecipeLine.where({ :recipe_id => @the_recipe.id})
+    @recipe_lines = matching_recipe_lines.order({ :created_at => :desc })
 
     render({ :template => "recipe_templates/show" })
   end
