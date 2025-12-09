@@ -20,8 +20,6 @@ class IngredientsController < ApplicationController
   def create
     the_ingredient = Ingredient.new
     the_ingredient.name = params.fetch("query_name")
-    the_ingredient.list_lines_count = params.fetch("query_list_lines_count")
-    the_ingredient.recipe_lines_count = params.fetch("query_recipe_lines_count")
 
     if the_ingredient.valid?
       the_ingredient.save
@@ -36,8 +34,6 @@ class IngredientsController < ApplicationController
     the_ingredient = Ingredient.where({ :id => the_id }).at(0)
 
     the_ingredient.name = params.fetch("query_name")
-    the_ingredient.list_lines_count = params.fetch("query_list_lines_count")
-    the_ingredient.recipe_lines_count = params.fetch("query_recipe_lines_count")
 
     if the_ingredient.valid?
       the_ingredient.save

@@ -1,5 +1,5 @@
 <h1>
-  Ingredient #<%= @the_ingredient.id %> details
+  <%= @the_ingredient.name %> ingredient details
 </h1>
 
 <article>
@@ -23,7 +23,7 @@
     </dd>
 
     <dt>
-      List lines count
+      Grocery list lines count
     </dt>
     <dd>
       <%= @the_ingredient.list_lines_count %>
@@ -69,22 +69,6 @@
       </label>
 
       <input type="text" id="name_box" name="query_name" value="<%= @the_ingredient.name %>">
-    </div>
-
-    <div>
-      <label for="list_lines_count_box">
-        List lines count
-      </label>
-
-      <input type="text" id="list_lines_count_box" name="query_list_lines_count" value="<%= @the_ingredient.list_lines_count %>">
-    </div>
-
-    <div>
-      <label for="recipe_lines_count_box">
-        Recipe lines count
-      </label>
-
-      <input type="text" id="recipe_lines_count_box" name="query_recipe_lines_count" value="<%= @the_ingredient.recipe_lines_count %>">
     </div>
 
     <button type="submit">
