@@ -1,0 +1,42 @@
+<nav aria-label="breadcrumb">
+  <ul>
+    <li><a href="/">Home</a></li>
+
+    <li><a href="/lists">Grocery Lists</a></li>
+
+    <li><a href="/lists/<%= @the_list.id %>"><%= @the_list.name %></a></li>
+
+    <li> Edit ingredient: <%= @the_ingredient.name %></li>
+  </ul>
+</nav>
+
+<h1>Edit grocery list line : <%= @the_ingredient.name %></h1>
+
+<form action="/modify_list_line/<%= @the_list_line.id %>" method="post">
+  <label for="ingredient_field">Ingredient</label>
+  <select id="ingredient_field" name="query_ingredient_id">
+    <% Ingredient.all.each do |an_ingredient| %>
+      <option value="<%= an_ingredient.id %>" <%= "selected" if an_ingredient.id == @the_list_line.ingredient_id %>>
+        <%= an_ingredient.name %>
+      </option>
+    <% end %>
+  </select>
+
+  <label for="quantity_field">Quantity</label>
+  <input id="quantity_field" type="text" name="query_quantity" value="<%= @the_list_line.quantity %>">
+
+  <label for="unit_field">Quantity Units</label>
+  <select id="unit_field" name="query_quantity_unit">
+    <option value="oz." <%= "selected" if @the_list_line.quantity_unit == "oz." %>>oz.</option>
+    <option value="lb"  <%= "selected" if @the_list_line.quantity_unit == "lb" %>>lb</option>
+    <option value="each" <%= "selected" if @the_list_line.quantity_unit == "each" %>>each</option>
+  </select>
+
+  <label for="notes_field">Notes</label>
+  <textarea id="notes_field" type="text" name="query_notes"><%= @the_list_line.notes %></textarea>
+
+  <!-- keep the recipe_id the same -->
+  <input type="hidden" name="query_list_id" value="<%= @the_list_line.list_id %>">
+
+  <button>Update grocery list line</button>
+</form>

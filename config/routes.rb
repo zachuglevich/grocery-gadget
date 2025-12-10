@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # UPDATE
 
+  get("/list_lines/:path_id/edit", { :controller => "list_lines", :action => "edit_form" })
   post("/modify_list_line/:path_id", { :controller => "list_lines", :action => "update" })
 
   # DELETE

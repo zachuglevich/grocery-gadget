@@ -11,8 +11,11 @@ class ListsController < ApplicationController
     the_id = params.fetch("path_id")
 
     matching_lists = List.where({ :id => the_id })
-
     @the_list = matching_lists.at(0)
+
+    #Grocery List Lines
+    matching_list_lines = ListLine.where({ :list_id => @the_list.id})
+    @list_lines = matching_list_lines.order({ :created_at => :desc })
 
     render({ :template => "list_templates/show" })
   end
