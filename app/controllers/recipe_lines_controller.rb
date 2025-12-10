@@ -34,6 +34,14 @@ class RecipeLinesController < ApplicationController
     end
   end
 
+  def edit_form
+    the_id = params.fetch("path_id")
+    matching_lines = RecipeLine.where({ :id => the_id })
+    @the_recipe_line = matching_lines.at(0)
+
+    render({ :template => "recipe_line_templates/edit_form" })
+  end
+
   def update
     the_id = params.fetch("path_id")
     the_recipe_line = RecipeLine.where({ :id => the_id }).at(0)
@@ -46,9 +54,9 @@ class RecipeLinesController < ApplicationController
 
     if the_recipe_line.valid?
       the_recipe_line.save
-      redirect_to("/recipe_lines/#{the_recipe_line.id}", { :notice => "Recipe line updated successfully." } )
+      redirect_to("/recipes/#{the_recipe_line.recipe_id}", { :notice => "Recipe line updated successfully." } )
     else
-      redirect_to("/recipe_lines/#{the_recipe_line.id}", { :alert => the_recipe_line.errors.full_messages.to_sentence })
+      redirect_to("/recipes/#{the_recipe_line.recipe_id}", { :alert => the_recipe_line.errors.full_messages.to_sentence })
     end
   end
 
@@ -58,6 +66,6 @@ class RecipeLinesController < ApplicationController
 
     the_recipe_line.destroy
 
-    redirect_to("/recipe_lines", { :notice => "Recipe line deleted successfully." } )
+    redirect_to("/recipes/#{the_recipe_line.recipe_id}", { :notice => "Recipe line deleted successfully." } )
   end
 end

@@ -129,6 +129,7 @@
         <th> Ingredient </th>
         <th> Quantity </th>
         <th> Notes </th>
+        <th> Actions </th>
       </tr>
     </thead>
     <tbody>
@@ -139,6 +140,7 @@
           <td><%= the_ingredient.name %></td>
           <td><%= a_line.quantity %> <%= a_line.quantity_unit %></td>
           <td><%= a_line.notes %></td>
+          <td><a href="/delete_recipe_line/<%= a_line.id %>">Delete</a> <a href="/recipe_lines/<%= a_line.id %>/edit">Edit</a></td>
         </tr>
       <% end %>
     </tbody>

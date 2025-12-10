@@ -1,0 +1,26 @@
+<h1>Edit recipe line</h1>
+
+<form action="/modify_recipe_line/<%= @the_recipe_line.id %>" method="post">
+  <label for="ingredient_field">Ingredient</label>
+  <select id="ingredient_field" name="query_ingredient_id">
+    <% Ingredient.all.each do |an_ingredient| %>
+      <option value="<%= an_ingredient.id %>" <%= "selected" if an_ingredient.id == @the_recipe_line.ingredient_id %>>
+        <%= an_ingredient.name %>
+      </option>
+    <% end %>
+  </select>
+
+  <label for="quantity_field">Quantity</label>
+  <input id="quantity_field" type="text" name="query_quantity" value="<%= @the_recipe_line.quantity %>">
+
+  <label for="unit_field">Unit</label>
+  <input id="unit_field" type="text" name="query_quantity_unit" value="<%= @the_recipe_line.quantity_unit %>">
+
+  <label for="notes_field">Notes</label>
+  <input id="notes_field" type="text" name="query_notes" value="<%= @the_recipe_line.notes %>">
+
+  <!-- keep the recipe_id the same -->
+  <input type="hidden" name="query_recipe_id" value="<%= @the_recipe_line.recipe_id %>">
+
+  <button>Update recipe line</button>
+</form>
