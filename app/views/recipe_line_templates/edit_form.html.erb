@@ -1,3 +1,15 @@
+<nav aria-label="breadcrumb">
+  <ul>
+    <li><a href="/">Home</a></li>
+
+    <li><a href="/recipes">Recipes</a></li>
+
+    <li><a href="/recipes/<%= @the_recipe_line.recipe_id %>"><%= @the_recipe_line.recipe_id %></a></li>
+
+    <li> Edit ingredient line</li>
+  </ul>
+</nav>
+
 <h1>Edit recipe line</h1>
 
 <form action="/modify_recipe_line/<%= @the_recipe_line.id %>" method="post">
@@ -13,8 +25,12 @@
   <label for="quantity_field">Quantity</label>
   <input id="quantity_field" type="text" name="query_quantity" value="<%= @the_recipe_line.quantity %>">
 
-  <label for="unit_field">Unit</label>
-  <input id="unit_field" type="text" name="query_quantity_unit" value="<%= @the_recipe_line.quantity_unit %>">
+  <label for="unit_field">Quantity Units</label>
+  <select id="unit_field" name="query_quantity_unit">
+    <option value="oz." <%= "selected" if @the_recipe_line.quantity_unit == "oz." %>>oz.</option>
+    <option value="lb"  <%= "selected" if @the_recipe_line.quantity_unit == "lb" %>>lb</option>
+    <option value="each" <%= "selected" if @the_recipe_line.quantity_unit == "each" %>>each</option>
+  </select>
 
   <label for="notes_field">Notes</label>
   <input id="notes_field" type="text" name="query_notes" value="<%= @the_recipe_line.notes %>">
