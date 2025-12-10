@@ -39,6 +39,12 @@ class RecipeLinesController < ApplicationController
     matching_lines = RecipeLine.where({ :id => the_id })
     @the_recipe_line = matching_lines.at(0)
 
+    matchiing_recipes = Recipe.where({ :id => @the_recipe_line.recipe_id })
+    @the_recipe = matchiing_recipes.at(0)
+
+    matchiing_ingredients = Ingredient.where({ :id => @the_recipe_line.ingredient_id })
+    @the_ingredient = matchiing_ingredients.at(0)
+
     render({ :template => "recipe_line_templates/edit_form" })
   end
 

@@ -4,13 +4,13 @@
 
     <li><a href="/recipes">Recipes</a></li>
 
-    <li><a href="/recipes/<%= @the_recipe_line.recipe_id %>"><%= @the_recipe_line.recipe_id %></a></li>
+    <li><a href="/recipes/<%= @the_recipe.id %>"><%= @the_recipe.name %></a></li>
 
-    <li> Edit ingredient line</li>
+    <li> Edit ingredient: <%= @the_ingredient.name %></li>
   </ul>
 </nav>
 
-<h1>Edit recipe line</h1>
+<h1>Edit recipe line : <%= @the_ingredient.name %></h1>
 
 <form action="/modify_recipe_line/<%= @the_recipe_line.id %>" method="post">
   <label for="ingredient_field">Ingredient</label>
