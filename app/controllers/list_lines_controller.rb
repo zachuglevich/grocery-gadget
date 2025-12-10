@@ -71,6 +71,23 @@ class ListLinesController < ApplicationController
     end
   end
 
+  def bulk_update
+    pp params
+    the_list_id = params.fetch("path_id")
+    matching_lines = ListLine.where({ :list_id => the_list_id})
+
+    matching_lines.each do |a_line|
+      in_stock_key = "in_stock_flag_#{a_line.id}"
+      in_cart_key = "in_cart_flag_#{a_line.id}"
+
+      a_line.in_stock_flag = params.fetch(in_stock_key, nil).present?
+      a_line.in_cart_flag = params.fetch(in_cart_key, nil).present?
+
+      a_line.save
+    end
+    redirect_to("/lists/#{the_list_id}", { :notice => "List updated"})
+  end
+
   def destroy
     the_id = params.fetch("path_id")
     the_list_line = ListLine.where({ :id => the_id }).at(0)

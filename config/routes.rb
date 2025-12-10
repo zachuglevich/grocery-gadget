@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get("/list_lines/:path_id/edit", { :controller => "list_lines", :action => "edit_form" })
   post("/modify_list_line/:path_id", { :controller => "list_lines", :action => "update" })
-
+  post("/update_list_lines/:path_id", { :controller => "list_lines", :action => "bulk_update"})
   # DELETE
   get("/delete_list_line/:path_id", { :controller => "list_lines", :action => "destroy" })
 

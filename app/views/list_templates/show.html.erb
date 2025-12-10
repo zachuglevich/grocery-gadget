@@ -141,34 +141,45 @@
 <hr>
 <article>
   <h1> Grocery list</h1>
-  <table>
-    <thead>
-      <tr>
-        <th> Ingredient </th>
-        <th> Quantity </th>
-        <th> Notes </th>
-        <th> Actions </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @list_lines.each do |a_line| %>
-        <% matching_ingredients = Ingredient.where({:id => a_line.ingredient_id})%>
-        <% the_ingredient = matching_ingredients.at(0) %>
+  <form action="/update_list_lines/<%= @the_list.id %>" method="post">
+    <table>
+      <thead>
         <tr>
-          <td><%= the_ingredient.name %></td>
-          <td><%= a_line.quantity %> <%= a_line.quantity_unit %></td>
-          <td><%= a_line.notes %></td>
-          <td><a href="/delete_list_line/<%= a_line.id %>">Delete</a> <a href="/list_lines/<%= a_line.id %>/edit">Edit</a></td>
+          <th> Ingredient </th>
+          <th> Quantity </th>
+          <th> Notes </th>
+          <th> In stock </th>
+          <th> In cart </th>
+          <th> Actions </th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @list_lines.each do |a_line| %>
+          <% matching_ingredients = Ingredient.where({:id => a_line.ingredient_id})%>
+          <% the_ingredient = matching_ingredients.at(0) %>
+          <tr>
+            <td><%= the_ingredient.name %></td>
+            <td><%= a_line.quantity %> <%= a_line.quantity_unit %></td>
+            <td><%= a_line.notes %></td>
+
+            <td> 
+              <input type="checkbox" name="in_stock_flag_<%= a_line.id %>" value="1" <%= "checked" if a_line.in_stock_flag %>>
+            </td>
+            <td> 
+              <input type="checkbox" name="in_cart_flag_<%= a_line.id %>" value="1" <%= "checked" if a_line.in_cart_flag %>>
+            </td>
+
+            <td><a href="/delete_list_line/<%= a_line.id %>">Delete</a> <a href="/list_lines/<%= a_line.id %>/edit">Edit</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <button type="submit">Save checkbox changes</button>
+  </form>
 </article>
-
 <hr>
 
 <hr>
-
 <article>
   <header>
     <h2>
@@ -198,5 +209,4 @@
     </button>
   </form>
 </article>
-
 <hr>
