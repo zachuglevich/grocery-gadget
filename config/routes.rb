@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # CREATE
   post("/insert_list_line", { :controller => "list_lines", :action => "create" })
 
+  #IMPORT FROM RECIPE
+  post("/import_recipe_into_list/:path_id", {:controller => "list_lines", :action => "import_from_recipe"})
+
   # READ
   get("/list_lines", { :controller => "list_lines", :action => "index" })
 

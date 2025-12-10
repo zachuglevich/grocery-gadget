@@ -162,10 +162,10 @@
             <td><%= a_line.quantity %> <%= a_line.quantity_unit %></td>
             <td><%= a_line.notes %></td>
 
-            <td> 
+            <td>
               <input type="checkbox" name="in_stock_flag_<%= a_line.id %>" value="1" <%= "checked" if a_line.in_stock_flag %>>
             </td>
-            <td> 
+            <td>
               <input type="checkbox" name="in_cart_flag_<%= a_line.id %>" value="1" <%= "checked" if a_line.in_cart_flag %>>
             </td>
 
@@ -175,6 +175,29 @@
       </tbody>
     </table>
     <button type="submit">Save checkbox changes</button>
+  </form>
+</article>
+<hr>
+
+<hr>
+<article>
+<h1>Import ingredients from recipe</h1>
+  <form action="/import_recipe_into_list/<%= @the_list.id %>" method="post">
+    <label for="recipe_field">
+      Recipe:
+    </label>
+
+    <select id="recipe_field" name="query_recipe_id">
+      <% Recipe.all.each do |a_recipe| %>
+        <option value="<%= a_recipe.id %>">
+          <%= a_recipe.name %>
+        </option>
+      <% end %>
+    </select>
+
+    <button type="submit">
+      Import
+    </button>
   </form>
 </article>
 <hr>

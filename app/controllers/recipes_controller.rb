@@ -21,9 +21,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    the_id = params.fetch("path_id")
-    matching_recipes = Recipe.where({ :id => the_id })
-    @the_recipe = matching_recipes.at(0)
 
     the_recipe = Recipe.new
     the_recipe.name = params.fetch("query_name")

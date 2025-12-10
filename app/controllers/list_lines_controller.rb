@@ -37,6 +37,28 @@ class ListLinesController < ApplicationController
     end
   end
 
+  def import_from_recipe
+    the_list_id = params.fetch("path_id")
+    the_recipe_id = params.fetch("query_recipe_id")
+
+    #Step 1 - find all recipe lines for that recipe
+    matching_recipe_lines = RecipeLine.where({ :recipe_id => the_recipe_id})
+
+    #Step 2 - loop and create list_lines
+    matching_recipe_lines.each do |a_recipe_line|
+      a_list_line = ListLine.new
+      a_list_line.list_id = the_list_id
+      a_list_line.ingredient_id = a_recipe_line.ingredient_id
+      a_list_line.quantity = a_recipe_line.quantity
+      a_list_line.quantity_unit = a_recipe_line.quantity_unit
+      a_list_line.notes = a_recipe_line.notes
+      a_list_line.in_stock_flag = false
+      a_list_line.in_cart_flag = false
+      a_list_line.save
+    end
+    redirect_to("/lists/#{the_list_id}", {:notice => "Ingredients imported from recipe"})
+  end
+
   def edit_form
     the_id = params.fetch("path_id")
     matching_lines = ListLine.where({ :id => the_id })
@@ -94,6 +116,6 @@ class ListLinesController < ApplicationController
 
     the_list_line.destroy
 
-    redirect_to("/list_lines", { :notice => "List line deleted successfully." } )
+    redirect_to("/lists/#{the_list_line.list_id}", { :notice => "List line deleted successfully." } )
   end
 end
